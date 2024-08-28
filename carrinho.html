@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Carrinho de Compras</h1>
+    </header>
+    <main>
+        <table id="cart-table">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Preço Unitário</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="cart-body">
+                <!-- Os dados do produto serão inseridos aqui -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3"><strong>Total do Carrinho</strong></td>
+                    <td id="cart-total">R$ 0.00</td>
+                </tr>
+            </tfoot>
+        </table>
+    </main>
+
+    <div class="formas-pagamento">
+        <h2>Formas de Pagamento</h2>
+        <ul>
+            <li><a href="pagamento_cartao.html">Cartão de Crédito</a></li>
+            <li><a href="pagamento_boleto.html">Boleto Bancário</a></li>
+            <li><a href="pagamento_pix.html">PIX</a></li>
+        </ul>
+    </div>
+</main>
+    <script src="script.js"></script>
+</body>
+</html>

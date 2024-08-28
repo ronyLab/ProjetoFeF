@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="login.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login</title>
+</head>
+<body>
+    <!--Container da tela de login-->
+   
+    <div class="container">
+        <h2>Login</h2>
+        
+        <!--Inicio do formulario-->
+        <form id="login-form" action="/login" method="post">
+            <div class="input-field">
+                <input type="text" id="nome" name="nome" placeholder="alguma coisa">
+                <label for="nome">Nome:</label>
+            </div>
+
+            <div class="input-field">
+                <input type="password" id="senha" name="senha" placeholder="alguma coisa">
+                <label for="senha">Senha:</label>
+            </div>
+
+            <!-- Div para exibir a mensagem de erro -->
+            <div id="error-message" style="color: red; margin-bottom: 10px;"></div>
+
+            <div class="center">
+                <button type="button" onclick="login()">Entrar</button>
+            </div>
+        </form><!--Fim do Formulario-->
+        <div class="links-uteis">
+            <a href=""><p>Esqueceu a sua senha ?</p></a>
+            <a href=""><p>Ainda não sou cadastrado</p></a>
+        </div>
+    </div>
+
+    <!-- Script para verificar os dados do formulário -->
+    <script>
+        function login() {
+            // Obtém os valores do nome e da senha
+            var nome = document.getElementById("nome").value;
+            var senha = document.getElementById("senha").value;
+
+            // Verifica se o nome e a senha estão vazios
+            if (!nome || !senha) {
+                // Exibe a mensagem de erro
+                updateErrorMessage("Por favor, preencha todos os campos.");
+            } else {
+                // Submete o formulário
+                document.getElementById("login-form").submit();
+            }
+        }
+
+        // Função para exibir a mensagem de erro
+        function updateErrorMessage(message) {
+            var errorMessage = document.getElementById("error-message");
+            errorMessage.innerText = message;
+        }
+    </script>
+</body>
+</html>

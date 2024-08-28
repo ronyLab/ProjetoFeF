@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAST & FAIR</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+    <div class="container">
+       
+        <div class="search-container">
+            <div class="search-bar">
+                <input id="searchInput" type="text" placeholder="Pesquisar departamento">
+                <button id="searchButton">Pesquisar</button>
+                <ul id="searchResults" class="search-results"></ul>
+            </div>
+        </div>
+    
+        <button onclick="voltarAoTopo()" class="btn-topo" id="btnTopo">
+            <img src="incone/seta.png" alt="Ícone de voltar ao topo">
+            Voltar ao Topo
+          </button>  
+
+
+    <div id="produtos">
+        <!-- Aqui serão carregados os produtos encontrados -->
+    </div>
+    
+    
+    <nav>
+       
+        <div class="logo">
+            <img src="logo/logo.png" alt="Logo da Fast & Fair"> <!-- Substitua pelo caminho correto da sua imagem -->
+        </div>
+        <div class="links">
+            <ul class="nav-itens">
+                <li class="submenu-parent">
+                    <a href="produtos.html">Departamentos</a>
+                    <ul class="submenu">
+                        <li><a href="#departamento-de-frutas">frutas</a></li>
+                        <li><a href="#departamento-de-legumes">legumes</a></li>
+                        <li><a href="#">plantas</a></li>
+                        <li><a href="#departamento-de-verduras">verduras</a></li>
+                        <li><a href="#">raizes</a></li>
+                        
+                    </ul>
+                </li>
+                <li><a href="#">inicio</a></li>
+                <li><a href="#">Suporte</a></li>
+                <li><a href="anuncie.html">anuncie</a></li>
+                <li><a href="#">fale conosco</a></li>
+              
+              
+                
+</li>
+
+                
+                
+            </ul>
+        </div>
+        
+        <div class="btn">
+            <a href="login.html" class="login">Login</a>
+            <a href="cadastro.html" class="cadastro">Cadastro</a>
+
+        </div>
+
+    </nav>
+
+    
+  <!-- carrocel-->
+  <div class="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item">
+            <a href="https://example.com/link1"><img src="slides/laranja1.jpg" alt="Imagem 1"></a>
+        </div>
+        <div class="carousel-item">
+            <a href="https://example.com/link2"><img src="slides/branco1.jpg" alt="Imagem 2"></a>
+        </div>
+        <div class="carousel-item">
+            <a href="https://example.com/link3"><img src="slides/rosa.png" alt="Imagem 3"></a>
+        </div>
+        <div class="carousel-item">
+            <a href="https://example.com/link4"><img src="slides/roxo.png" alt="Imagem 4"></a>
+        </div>
+        <div class="carousel-item">
+            <a href="https://example.com/link5"><img src="slides/vermelho.png" alt="Imagem 5"></a>
+        </div>
+    </div>
+    <button id="prevBtn">&#10094;</button>
+    <button id="nextBtn">&#10095;</button>
+
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Social Media Strip</title>
+</head>
+<body>
+    <div class="social-strip">
+        <a href="https://www.facebook.com" class="social-icon">
+            <img src="incone/facebook.png" alt="Facebook">
+            <span>Facebook</span>
+        </a>
+    
+        <a href="https://www.instagram.com" class="social-icon">
+            <img src="incone/instagram.png" alt="Instagram">
+            <span>Instagram</span>
+        </a>
+    
+        <a href="https://twitter.com" class="social-icon">
+            <img src="incone/twitter.png" alt="Twitter">
+            <span>Twitter</span>
+        </a>
+    
+        <a href="https://www.youtube.com" class="social-icon">
+            <img src="incone/youtube.png" alt="YouTube">
+            <span>YouTube</span>
+        </a>
+    
+        <a href="https://www.whatsapp.com" class="social-icon">
+            <img src="incone/whatsapp.png" alt="WhatsApp">
+            <span>WhatsApp</span>
+        </a>
+    </div>
+    
+
+
+    <!-- produtos que vieram do produtos.html  -->
+
+
+
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>site</title>
+        <!-- Seus estilos CSS -->
+    </head>
+    <body>
+     
+  
+        
+        <h1 id="departamento-de-frutas">Departamento de frutas</h1>
+      
+    <main>
+        <div class="product">
+            <img src="imagens/maça.jpg_v=638481844706070000" alt="Maçã">
+            <h2>Maçã</h2>
+            <p>Preço: R$ 5.00 por kg</p>
+            <div class="quantity-control">
+                <button onclick="changeQuantity('maca-quantity', -1)">-</button>
+                <input type="number" id="maca-quantity" min="1" value="1" readonly>
+                <button onclick="changeQuantity('maca-quantity', 1)">+</button>
+            </div>
+            <button onclick="addToCart('Maçã', 5.00, 'maca-quantity')">Adicionar ao Carrinho</button>
+        </div>
+
+        <div class="product">
+            <img src="imagens/banana.jpg_v=638509900435500000" alt="Banana">
+            <h2>Banana</h2>
+            <p>Preço: R$ 3.79 por kg</p>
+            <div class="quantity-control">
+                <button onclick="changeQuantity('banana-quantity', -1)">-</button>
+                <input type="number" id="banana-quantity" min="1" value="1" readonly>
+                <button onclick="changeQuantity('banana-quantity', 1)">+</button>
+            </div>
+            <button onclick="addToCart('Banana', 3.79, 'banana-quantity')">Adicionar ao Carrinho</button>
+        </div>
+
+        <!-- Adicione mais produtos aqui -->
+
+        <div class="product">
+            <img src="imagens/laranja.jpg" alt="Laranja">
+            <h2>Laranja</h2>
+            <p>Preço: R$ 2.50 por kg</p>
+            <div class="quantity-control">
+                <button onclick="changeQuantity('laranja-quantity', -1)">-</button>
+                <input type="number" id="laranja-quantity" min="1" value="1" readonly>
+                <button onclick="changeQuantity('laranja-quantity', 1)">+</button>
+            </div>
+            <button onclick="addToCart('Laranja', 2.50, 'laranja-quantity')">Adicionar ao Carrinho</button>
+        </div>
+
+        <div class="product">
+            <img src="imagens/uva.jpg" alt="Uva">
+            <h2>Uva</h2>
+            <p>Preço: R$ 7.99 por kg</p>
+            <div class="quantity-control">
+                <button onclick="changeQuantity('uva-quantity', -1)">-</button>
+                <input type="number" id="uva-quantity" min="1" value="1" readonly>
+                <button onclick="changeQuantity('uva-quantity', 1)">+</button>
+            </div>
+            <button onclick="addToCart('Uva', 7.99, 'uva-quantity')">Adicionar ao Carrinho</button>
+        </div>
+
+        <div class="product">
+            <img src="imagens/abacaxi.jpg" alt="Abacaxi">
+            <h2>Abacaxi</h2>
+            <p>Preço: R$ 9.99 por kg</p>
+            <div class="quantity-control">
+                <button onclick="changeQuantity('abacaxi-quantity', -1)">-</button>
+                <input type="number" id="abacaxi-quantity" min="1" value="1" readonly>
+                <button onclick="changeQuantity('abacaxi-quantity', 1)">+</button>
+            </div>
+            <button onclick="addToCart('Abacaxi', 9.99, 'abacaxi-quantity')">Adicionar ao Carrinho</button>
+        </div>
+
+        <div class="product">
+            <img src="imagens/morango.jpg" alt="Morango">
+            <h2>Morango</h2>
+            <p>Preço: R$ 4.25 por kg</p>
+            <div class="quantity-control">
+                <button onclick="changeQuantity('morango-quantity', -1)">-</button>
+                <input type="number" id="morango-quantity" min="1" value="1" readonly>
+                <button onclick="changeQuantity('morango-quantity', 1)">+</button>
+            </div>
+            <button onclick="addToCart('Morango', 4.25, 'morango-quantity')">Adicionar ao Carrinho</button>
+        </div>
+
+        <div class="product">
+            <img src="imagens/manga.jpg" alt="Manga">
+            <h2>Manga</h2>
+            <p>Preço: R$ 5.60 por kg</p>
+            <div class="quantity-control">
+                <button onclick="changeQuantity('manga-quantity', -1)">-</button>
+                <input type="number" id="manga-quantity" min="1" value="1" readonly>
+                <button onclick="changeQuantity('manga-quantity', 1)">+</button>
+            </div>
+            <button onclick="addToCart('Manga', 5.60, 'manga-quantity')">Adicionar ao Carrinho</button>
+        </div>
+       
+        <div class="product">
+            <img src="imagens/melancia.jpg" alt="melancia">
+            <h2>melancia</h2>
+            <p>Preço: R$ 15.78 por kg</p>
+            <div class="quantity-control">
+                <button onclick="changeQuantity('melancia-quantity', -1)">-</button>
+                <input type="number" id="melancia-quantity" min="1" value="1" readonly>
+                <button onclick="changeQuantity('melancia-quantity', 1)">+</button>
+            </div>
+            <button onclick="addToCart('melancia', 15.78, 'melancia-quantity')">Adicionar ao Carrinho</button>
+        </div>
+        <a href="carrinho.html" class="cart-button" id="cart-link">
+            <img src="incone/carrinho.png" alt="Carrinho">
+            <span id="cart-total">R$ 0.00</span>
+        </a>
+    </main>
+
+</div>
+
+<h1 id="departamento-de-verduras">Departamento de verduras</h1>
+
+<main>
+    <div class="product">
+        <img src="imagens/espinafre.jpg" alt="espinafre">
+        <h2>espinafre</h2>
+        <p>Preço: R$ 5.49 unidade</p>
+        <div class="quantity-control">
+            <button onclick="changeQuantity('espinafre-quantity', -1)">-</button>
+            <input type="number" id="espinafre-quantity" min="1" value="1" readonly>
+            <button onclick="changeQuantity('espinafre-quantity', 1)">+</button>
+        </div>
+        <button onclick="addToCart('espinafre', 5.49, 'espinafre-quantity')">Adicionar ao Carrinho</button>
+    </div>
+
+    <div class="product">
+        <img src="imagens/couve flor.png" alt="couve flor">
+        <h2>couve flor</h2>
+        <p>Preço: R$ 12.99 unidade</p>
+        <div class="quantity-control">
+            <button onclick="changeQuantity('couve flor-quantity', -1)">-</button>
+            <input type="number" id="couve flor-quantity" min="1" value="1" readonly>
+            <button onclick="changeQuantity('couve flor-quantity', 1)">+</button>
+        </div>
+        <button onclick="addToCart('couve flor', 12.99, 'couve flor-quantity')">Adicionar ao Carrinho</button>
+    </div>
+
+    <!-- Adicione mais produtos aqui -->
+
+    <div class="product">
+        <img src="imagens/brocolis.jpeg" alt="brocolis">
+        <h2>brocolis</h2>
+        <p>Preço: R$ 11.40 unidade</p>
+        <div class="quantity-control">
+            <button onclick="changeQuantity('brocolis-quantity', -1)">-</button>
+            <input type="number" id="brocolis-quantity" min="1" value="1" readonly>
+            <button onclick="changeQuantity('brocolis-quantity', 1)">+</button>
+        </div>
+        <button onclick="addToCart('brocolis', 11.40, 'brocolis-quantity')">Adicionar ao Carrinho</button>
+    </div>
+
+    <div class="product">
+        <img src="imagens/rucula.jpeg" alt="rucula">
+        <h2>rucula</h2>
+        <p>Preço: R$ 5.70 unidade</p>
+        <div class="quantity-control">
+            <button onclick="changeQuantity('rucula-quantity', -1)">-</button>
+            <input type="number" id="rucula-quantity" min="1" value="1" readonly>
+            <button onclick="changeQuantity('rucula-quantity', 1)">+</button>
+        </div>
+        <button onclick="addToCart('rucula', 5.70, 'rucula-quantity')">Adicionar ao Carrinho</button>
+    </div>
+
+
+</main>
+
+    <h1 id="departamento-de-legumes">Departamento de legumes</h1>
+
+
+<main>    
+
+    <div class="product">
+        <img src="imagens/abobora.jpg" alt="abobora">
+        <h2>abobora</h2>
+        <p>Preço: R$ 11.49 unidade</p>
+        <div class="quantity-control">
+            <button onclick="changeQuantity('abobora-quantity', -1)">-</button>
+            <input type="number" id="abobora-quantity" min="1" value="1" readonly>
+            <button onclick="changeQuantity('abobora-quantity', 1)">+</button>
+        </div>
+        <button onclick="addToCart('abobora', 5.49, 'abobora-quantity')">Adicionar ao Carrinho</button>
+    </div>
+
+    <div class="product">
+        <img src="imagens/berinjela.jpg" alt="berinjela">
+        <h2>berinjela</h2>
+        <p>Preço: R$ 7.99 unidade</p>
+        <div class="quantity-control">
+            <button onclick="changeQuantity('berinjela-quantity', -1)">-</button>
+            <input type="number" id="berinjela-quantity" min="1" value="1" readonly>
+            <button onclick="changeQuantity('berinjela-quantity', 1)">+</button>
+        </div>
+        <button onclick="addToCart('berinjela', 7.99, 'berinjela-quantity')">Adicionar ao Carrinho</button>
+    </div>
+
+    <!-- Adicione mais produtos aqui -->
+
+    <div class="product">
+        <img src="imagens/beterraba.jpg" alt="beterraba">
+        <h2>beterraba</h2>
+        <p>Preço: R$ 8.40 unidade</p>
+        <div class="quantity-control">
+            <button onclick="changeQuantity('beterraba-quantity', -1)">-</button>
+            <input type="number" id="beterraba-quantity" min="1" value="1" readonly>
+            <button onclick="changeQuantity('beterraba-quantity', 1)">+</button>
+        </div>
+        <button onclick="addToCart('beterraba', 8.40, 'beterraba-quantity')">Adicionar ao Carrinho</button>
+    </div>
+
+    <div class="product">
+        <img src="imagens/pepino.jpg" alt="pepino">
+        <h2>pepino</h2>
+        <p>Preço: R$ 4.70 unidade</p>
+        <div class="quantity-control">
+            <button onclick="changeQuantity('pepino-quantity', -1)">-</button>
+            <input type="number" id="pepino-quantity" min="1" value="1" readonly>
+            <button onclick="changeQuantity('pepino-quantity', 1)">+</button>
+        </div>
+        <button onclick="addToCart('pepino', 4.70, 'pepino-quantity')">Adicionar ao Carrinho</button>
+    </div>
+
+
+</main>
+    <script src="script.js"></script>
+    
+</body>
+</html>

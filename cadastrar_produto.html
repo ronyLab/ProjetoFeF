@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f5f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Perfil do Usuário</h1>
+
+        <h2>Cadastrar Produto</h2>
+        <form id="formProduto">
+            <label for="produtoNome">Nome do Produto:</label>
+            <input type="text" id="produtoNome" name="produtoNome" required>
+            
+            <label for="produtoQuantidade">Quantidade:</label>
+            <input type="number" id="produtoQuantidade" name="produtoQuantidade" required>
+            
+            <label for="produtoPreco">Preço:</label>
+            <input type="number" id="produtoPreco" name="produtoPreco" step="0.01" required>
+
+            <!-- Adicionando um campo hidden para armazenar o nome do usuário -->
+            <input type="hidden" id="nomeUsuario" name="nomeUsuario" value="">
+
+            <button type="button" onclick="adicionarProduto()">Adicionar Produto</button>
+        </form>
+
+        <h2>Produto Adicionado ↓ </h2>
+        <ul id="listaProdutos">
+            <!-- Os produtos serão exibidos aqui -->
+        </ul>
+    </div>
+
+    <script>
+        // Função para adicionar um novo produto
+        function adicionarProduto() {
+            // Obtém os valores do formulário
+            const produtoNome = document.getElementById('produtoNome').value;
+            const produtoQuantidade = document.getElementById('produtoQuantidade').value;
+            const produtoPreco = document.getElementById('produtoPreco').value;
+
+            // Obtém o nome do usuário da URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const nomeUsuario = urlParams.get('nome');
+
+            // Constrói o objeto com os dados do produto
+            const novoProduto = {
+                nome: produtoNome,
+                quantidade: produtoQuantidade,
+                preco: produtoPreco,
+                nomeUsuario: nomeUsuario // Adicionando o nome do usuário
+            };
+
+            // Faz uma requisição AJAX para adicionar o produto
+            fetch("/adicionar-produto", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(novoProduto)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                // Se o produto foi adicionado com sucesso, atualiza a lista de produtos
+                if (data.id) {
+                    const listaProdutos = document.getElementById('listaProdutos');
+                    const novoItem = document.createElement('li');
+                    novoItem.textContent = `Nome: ${novoProduto.nome}, Quantidade: ${novoProduto.quantidade}, Preço: ${novoProduto.preco}`;
+                    listaProdutos.appendChild(novoItem);
+                    // Limpa o formulário após a submissão
+                    document.getElementById('formProduto').reset();
+                } else {
+                    console.error("Erro ao adicionar produto");
+                }
+            })
+            .catch(error => {
+                console.error("Erro ao adicionar produto:", error);
+            });
+        }
+    </script>
+</body>
+</html>

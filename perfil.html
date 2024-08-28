@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+    <link rel="stylesheet" href="perfil.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Perfil do Usuário</h1>
+        <div class="perfil-info">
+            <p>Nome: <span id="nome"></span> <button class="editar-button" onclick="editar('nome')">Editar</button></p>
+            <p>Sobrenome: <span id="sobrenome"></span> <button class="editar-button" onclick="editar('sobrenome')">Editar</button></p>
+            <p>E-mail: <span id="email"></span> <button class="editar-button" onclick="editar('email')">Editar</button></p>
+            <p>Número de Celular: <span id="celular"></span> <button class="editar-button" onclick="editar('celular')">Editar</button></p>
+            <br>
+            <button onclick="voltar()">Voltar</button>
+            <button onclick="confirmar()">Confirmar Alterações</button>
+        </div>
+
+        <div class="produto-table">
+            <h2>Produtos Cadastrados</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Quantidade</th>
+                        <th>Preço</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="produtosTableBody">
+                </tbody>
+            </table>
+            <form id="adicionarProdutoForm">
+                <h3>Adicionar Produto</h3>
+                <label for="nomeProduto">Nome do Produto:</label>
+                <input type="text" id="nomeProduto" name="nomeProduto" required>
+                <br>
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" id="quantidade" name="quantidade" required>
+                <br>
+                <label for="preco">Preço:</label>
+                <input type="number" id="preco" name="preco" required>
+                <br>
+                <input type="submit" value="Adicionar Produto">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Variáveis globais para armazenar os dados originais do usuário
+        let dadosOriginais = {};
+
+        // Obtém o nome do usuário da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const nomeUsuario = urlParams.get('nome');
+
+        // Requisição AJAX para obter os dados do usuário pelo nome
+        fetch(`/perfil/${nomeUsuario}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log('Dados do usuário recebidos:', data);
+                // Preenche os dados do usuário no HTML
+                document.getElementById("nome").textContent = data.Nome;
+                document.getElementById("sobrenome").textContent = data.Sobrenome;
+                document.getElementById("email").textContent = data.Email;
+                document.getElementById("celular").textContent = data.Celular;
+
+                // Salva os dados originais do usuário
+                dadosOriginais = { ...data };
+            })
+            .catch(error => console.error('Erro ao obter perfil:', error));
+
+        // Função para editar os dados
+        function editar(campo) {
+            const novoValor = prompt(`Digite o novo valor para ${campo}:`);
+            if (novoValor !== null && novoValor.trim() !== "") {
+                document.getElementById(campo).textContent = novoValor;
+            } else {
+                alert("Operação cancelada ou valor inválido.");
+            }
+        }
+
+        // Função para voltar à página anterior
+        function voltar() {
+            window.history.back();
+        }
+
+        // Função para confirmar as alterações e enviar para o servidor
+        function confirmar() {
+            // Obtém os novos valores dos campos de entrada
+            const novoNome = document.getElementById("nome").textContent;
+            const novoSobrenome = document.getElementById("sobrenome").textContent;
+            const novoEmail = document.getElementById("email").textContent;
+            const novoCelular = document.getElementById("celular").textContent;
+
+            // Constrói o objeto com os novos dados
+            const novosDados = {
+                Nome: novoNome,
+                Sobrenome: novoSobrenome,
+                Email: novoEmail,
+                Celular: novoCelular
+            };
+
+            // Faz uma requisição AJAX para enviar os dados atualizados para o servidor
+            fetch(`/atualizar-perfil/${nomeUsuario}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(novosDados),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Dados do perfil atualizados:', data);
+                alert("Informações do perfil atualizadas com sucesso!");
+            })
+            .catch(error => console.error('Erro ao atualizar perfil:', error));
+        }
+
+        // Função para obter os produtos cadastrados pelo usuário
+        function obterProdutos() {
+            fetch(`/produtos/${nomeUsuario}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Produtos recebidos:', data);
+                    const produtosTableBody = document.getElementById('produtosTableBody');
+                    produtosTableBody.innerHTML = '';
+                    data.forEach(produto => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${produto.Nome}</td>
+                            <td>${produto.Quantidade}</td>
+                            <td>${produto.Preco}</td>
+                            <td>
+                                <button onclick="editarProduto('${produto.ID}')">Editar</button>
+                                <button onclick="excluirProduto('${produto.ID}')">Excluir</button>
+                            </td>
+                        `;
+                        produtosTableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Erro ao obter produtos:', error));
+        }
+
+        // Função para adicionar um novo produto
+        document.getElementById('adicionarProdutoForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const nomeProduto = document.getElementById('nomeProduto').value;
+            const quantidade = document.getElementById('quantidade').value;
+            const preco = document.getElementById('preco').value;
+
+            fetch('/adicionar-produto', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    nome: nomeProduto,
+                    quantidade: quantidade,
+                    preco: preco,
+                    nomeUsuario: nomeUsuario
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Produto adicionado:', data);
+                alert('Produto adicionado com sucesso!');
+                obterProdutos();
+            })
+            .catch(error => console.error('Erro ao adicionar produto:', error));
+        });
+
+        // Função para editar um produto
+        function editarProduto(produtoID) {
+            const novoNome = prompt("Digite o novo nome do produto:");
+            const novaQuantidade = prompt("Digite a nova quantidade:");
+            const novoPreco = prompt("Digite o novo preço:");
+
+            if (novoNome && novaQuantidade && novoPreco) {
+                fetch(`/editar-produto/${produtoID}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        nome: novoNome,
+                        quantidade: novaQuantidade,
+                        preco: novoPreco
+                    }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Produto editado:', data);
+                    alert('Produto editado com sucesso!');
+                    obterProdutos();
+                })
+                .catch(error => console.error('Erro ao editar produto:', error));
+            } else {
+                alert('Todos os campos devem ser preenchidos.');
+            }
+        }
+
+// Função para excluir um produto pelo ID
+function excluirProduto(produtoID) {
+    // Faz uma requisição DELETE para excluir o produto
+    fetch(`/excluir-produto/${nomeUsuario}/${produtoID}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Produto excluído:', data);
+        // Atualiza a lista de produtos após a exclusão
+        obterProdutos();
+    })
+    .catch(error => console.error('Erro ao excluir produto:', error));
+}
+
+
+        // Obtém os produtos cadastrados ao carregar a página
+        obterProdutos();
+    </script>
+</body>
+</html>
